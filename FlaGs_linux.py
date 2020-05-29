@@ -46,14 +46,14 @@ parser.add_argument("-api", "--api_key", help=" NCBI API Key, To get this key ki
 parser.add_argument("-o", "--out_prefix", required= True, help=" Any Keyword to define your output eg. MyQuery ")
 parser.add_argument("-c", "--cpu", help="Maximum number of parallel CPU workers to use for multithreads. ")
 parser.add_argument("-k", "--keep", action="store_true", help=" If you want to keep the intermediate files eg. gff3 use [-k]. By default it will remove. ")
-parser.add_argument("-v", "--version", action="version", version='%(prog)s 1.2.4')
+parser.add_argument("-v", "--version", action="version", version='%(prog)s 1.2.5')
 parser.add_argument("-vb", "--verbose", action="store_true", help=" Use this option to see the work progress for each query as stdout. ")
 args = parser.parse_args()
 parser.parse_args()
 
-print('\nStarting FlaGs version 1.2.4 \nPlease only run one instance of FlaGs at a time to avoid making more queries than NCBI’s limit.')
+print('\nStarting FlaGs version 1.2.5 \nPlease only run one instance of FlaGs at a time to avoid making more queries than NCBI’s limit.')
 print('For more information, please check https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/ \n')
-print('Checking for RefSeq and Genbank summary files and downloading if needed… \n')
+print('Checking for RefSeq and Genbank summary files and downloading if needed ... \n')
 
 Entrez.tool = 'FlaGs'
 ncbi_time=0.4
@@ -65,8 +65,8 @@ def checkBioPython(): #Checking Biopython Version
 	return (Bio.__version__)
 
 from tkinter.font import Font #Font for postscript to-scale output
-myFont12 = Font(family="Helvetica", size=12)
-myFont7 = Font(family="Helvetica", size=7)
+myFont12 = Font(size=12)
+myFont7 = Font(size=7)
 
 Entrez.email = args.recipients[0] #User email
 Entrez.max_tries = 5
@@ -432,7 +432,11 @@ def identicalProtID_WP_Sp(accnr): #searching for identical proteins with same as
 			for ids in random.sample(iAccSetSpecial,1):
 				return ids
 		else:
-			return '#'
+			if iAssemblyList:
+				for ids in random.sample(iAssemblyList,1):
+					return accnr+'|'+ids
+			else:
+				return '#'
 	except:
 		return '#'
 
