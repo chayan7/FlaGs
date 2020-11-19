@@ -9,6 +9,9 @@ THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 ENV_PATH="$THIS_DIR/bin"
+cd "$ENV_PATH"
+wget http://130.239.193.227/html/eFlaGs.tar.gz
+cd "../"
 ENV_FILE="$ENV_PATH/eFlaGs.tar.gz"
 rm -rf $ENV_PATH/env
 mkdir $ENV_PATH/env
