@@ -6,12 +6,19 @@ if ! echo "$0" | grep '\.sh$' > /dev/null; then
     return 1
 fi
 
+
 conv="$(conda -V 2>&1)"
-if [ "$ans" = "conda: command not found" ];then
-	printf " Please install Conda properly and run this again, Thanks. "
+printf "$conv"
+
+condaExec="$(echo "$conv" | grep 'not' >&1)"
+printf "$condaExec"
+
+if [ "$condaExecr" != "" ];then
+	printf "\\nPlease install Conda properly and run this again, Thanks. \\n"
+  exit 2
 fi
-if [ "$ans" != "conda: command not found" ];then
-	printf "Adding FlaGs environment with all dependencies"
+if [ "$condaExec" = "" ];then
+	printf "\\nAdding FlaGs environment with all dependencies. \\n"
 fi
 
 
@@ -25,50 +32,22 @@ LIN_FILE="$ENV_PATH/elinFlaGs.txt"
 if [ "$(uname)" = "Linux" ];then
 	conda create --name eFlaGs --file "$LIN_FILE"
 	printf "\\n"
-	printf "Do you wish the installer to activate FlaGs environment ?\\n"
-	printf "[yes] >>> "
-	read -r ans
-	if [ "$ans" != "yes" ] && [ "$ans" != "Yes" ] && [ "$ans" != "YES" ] && [ "$ans" != "y" ]   && [ "$ans" != "Y" ]; then
-		printf "\\nPlease type the following command from a terminal to activate FlaGs environment and run:\\n"
-		printf "conda activate eFlaGs"
-		printf "To deactivate please type:"
-		printf "conda deactivate"
-		printf "\\n"
-		exit 2
-	fi
-	if ! [ "$ans" != "yes" ] && [ "$ans" != "Yes" ] && [ "$ans" != "YES" ] && [ "$ans" != "y" ]   && [ "$ans" != "Y" ]; then
-		conda activate eFlaGs
-		printf "\\nActivated FlaGs environment"
-		printf "\\nFor this change to become active, you have to open a new terminal.\\n"
-		printf "\\n"
-		printf "To deactivate please type:"
-		printf "conda deactivate"
-		printf "\\n"
-	fi
+	printf "\\nPlease type the following command from any terminal to activate FlaGs environment and run:\\n"
+	printf "conda activate eFlaGs\\n"
+	printf "\\nTo deactivate please type:\\n"
+	printf "conda deactivate\\n"
+	printf "\\n"
+	exit 2
 fi
 
 
 if [ "$(uname)" = "Darwin" ]; then
-	conda create --name eFlaGs --file "$MAC_FILE"
+  conda create --name eFlaGs --file "$LIN_FILE"
 	printf "\\n"
-	printf "Do you wish the installer to activate FlaGs environment ?\\n"
-	printf "[yes] >>> "
-	read -r ans
-	if [ "$ans" != "yes" ] && [ "$ans" != "Yes" ] && [ "$ans" != "YES" ] && [ "$ans" != "y" ]   && [ "$ans" != "Y" ]; then
-		printf "\\nPlease type the following command from a terminal to activate FlaGs environment and run:\\n"
-		printf "conda activate eFlaGs"
-		printf "To deactivate please type:"
-		printf "conda deactivate"
-		printf "\\n"
-		exit 2
-	fi
-	if ! [ "$ans" != "yes" ] && [ "$ans" != "Yes" ] && [ "$ans" != "YES" ] && [ "$ans" != "y" ]   && [ "$ans" != "Y" ]; then
-		conda activate eFlaGs
-		printf "\\nActivated FlaGs environment"
-		printf "\\nFor this change to become active, you have to open a new terminal.\\n"
-		printf "\\n"
-		printf "To deactivate please type:"
-		printf "conda deactivate"
-		printf "\\n"
-	fi
+	printf "\\nPlease type the following command from any terminal to activate FlaGs environment and run:\\n"
+	printf "conda activate eFlaGs\\n"
+	printf "\\nTo deactivate please type:\\n"
+	printf "conda deactivate\\n"
+	printf "\\n"
+	exit 2
 fi
