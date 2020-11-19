@@ -13,7 +13,7 @@ printf "$conv"
 condaExec="$(echo "$conv" | grep 'not' >&1)"
 printf "$condaExec"
 
-if [ "$condaExecr" != "" ];then
+if [ "$condaExec" != "" ];then
 	printf "\\nPlease install Conda properly and run this again, Thanks. \\n"
   exit 2
 fi
