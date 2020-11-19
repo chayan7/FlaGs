@@ -45,12 +45,12 @@ parser.add_argument("-api", "--api_key", help=" NCBI API Key, To get this key ki
 parser.add_argument("-o", "--out_prefix", required= True, help=" Any Keyword to define your output eg. MyQuery ")
 parser.add_argument("-c", "--cpu", help="Maximum number of parallel CPU workers to use for multithreads. ")
 parser.add_argument("-k", "--keep", action="store_true", help=" If you want to keep the intermediate files eg. gff3 use [-k]. By default it will remove. ")
-parser.add_argument("-v", "--version", action="version", version='%(prog)s 1.2.6')
+parser.add_argument("-v", "--version", action="version", version='%(prog)s 1.2.7')
 parser.add_argument("-vb", "--verbose", action="store_true", help=" Use this option to see the work progress for each query as stdout. ")
 args = parser.parse_args()
 parser.parse_args()
 
-print('\nStarting FlaGs version 1.2.6 \nPlease only run one instance of FlaGs at a time to avoid making more queries than NCBI’s limit.')
+print('\nStarting FlaGs version 1.2.7 \nPlease only run one instance of FlaGs at a time to avoid making more queries than NCBI’s limit.')
 print('For more information, please check https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/ \n')
 print('Checking for RefSeq and Genbank summary files and downloading if needed ... \n')
 
@@ -1931,7 +1931,7 @@ if args.tree and args.tree_order:  # Queries in postscript file will be presente
 	retval = canvas.postscript(file=args.out_prefix+"_treeOrder_flankgenes.ps", height=heightM, width=widthM, colormode="color")
 
 print('\n'+'<<< Done >>>')
-print('\nIf you use FlaGs in your work, please remember to cite these papers!'+'\n\n- Saha CK, Pires RS, Brolin H, Delannoy M, Atkinson GC. 2020. FlaGs and webFlaGs: discovering novel biology through the analysis of gene neighbourhood conservation. Bioinformatics.'+\
+print('\nIf you use FlaGs in your work, please remember to cite these papers!'+'\n\n- Saha CK, Pires RS, Brolin H, Delannoy M, Atkinson GC. 2020.\nFlaGs and webFlaGs: discovering novel biology through the analysis of gene neighbourhood conservation. Bioinformatics.'+\
 '\nhttps://doi.org/10.1093/bioinformatics/btaa788'+\
 '\n\n- Jimmy S, Saha CK, Kurata T, Stavropoulos C, Oliveira SRA, Koh A, Cepauskas A, Takada H, Rejman D, Tenson T, Strahl H, Garcia-Pino A, Hauryliuk V, Atkinson GC (2020).\nA widespread toxin-antitoxin system exploiting growth control via alarmone signaling. Proc. Natl. Acad. Sci. U.S.A.'+\
 '\nhttps://doi.org/10.1073/pnas.1916617117\n')
