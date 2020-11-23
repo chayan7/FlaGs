@@ -1128,10 +1128,7 @@ for query in NqueryDict:
 			fastaSeq = gzip.open(localDir+faaFile, "rt")
 			for record in SeqIO.parse(fastaSeq, "fasta"):
 				if record.id==query.split('#')[0]:
-					if args.redundant:
-						speciesNameFromOnlineDict[item]=remBadChar(record.description.split('[')[-1][:-1])+'_'+remBadChar(item)
-					else:
-						speciesNameFromOnlineDict[item]=remBadChar(record.description.split('[')[-1][:-1])
+					speciesNameFromOnlineDict[item]=remBadChar(record.description.split('[')[-1][:-1])
 		else:
 			if item not in speciesNameFromOnlineDict or speciesNameFromOnlineDict[item]=='Nothing':
 				faaFile=item+'.faa.gz'
